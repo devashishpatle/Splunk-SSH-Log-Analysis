@@ -19,4 +19,4 @@ Settings → Add Data → Upload
 
 Click Select File and choose your log file
 
-![Splunk Dashboard](Add-Log-File-Splunk.png)
+(Add-Log-File-Splunk.png)
