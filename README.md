@@ -18,3 +18,5 @@ Settings → Add Data → Upload
 3. Select your SSH log file
 
 Click Select File and choose your log file
+
+![Splunk Dashboard](Add-Log-File-Splunk.png)
