@@ -110,3 +110,12 @@ Description: Identifies successful SSH logins where authentication required more
 source="ssh_logs_new.json" host="Welcome" sourcetype="_json" auth_success=true auth_attempts>1
 | table ts id.orig_h username auth_attempts event_type
 ![Successful Login After Multiple Attempts](Successful-Attempts-After-Multiple-Attempts.png)
+
+**11. IP Targets & Username Count**
+
+Description: Shows the number of SSH events associated with each source IP address and targeted username. This helps identify which usernames are being targeted most frequently from specific IP addresses.
+
+source="ssh_logs_new.json" host="Welcome" sourcetype="_json"
+| stats count by id.orig_h username
+| sort - count
+![IP Targets and Username Count](IP-Targets-Username-Count.png)
