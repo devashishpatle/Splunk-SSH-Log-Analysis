@@ -93,3 +93,20 @@ source="ssh_logs_new.json" host="Welcome" sourcetype="_json" event_type="Failed 
 | stats count by id.orig_h
 | sort - count
 ![Failed Login Attempts By IP](Failed-Login-Attempts-By-IPAddresses.png)
+
+**9. Brute-Force Attack**
+
+Description: Detects multiple failed authentication attempts from the same source IP and username, helping identify possible brute-force attacks.
+
+source="ssh_logs_new.json" host="Welcome" sourcetype="_json" event_type="Multiple Failed Authentication Attempts"
+| stats sum(auth_attempts) as total_attempts count by id.orig_h username
+| sort - total_attempts
+![Brute Force Attack](Brute-force-Attack.png)
+
+**10. Successful Login After Multiple Attempts**
+
+Description: Identifies successful SSH logins where authentication required more than one attempt, which can indicate suspicious activity.
+
+source="ssh_logs_new.json" host="Welcome" sourcetype="_json" auth_success=true auth_attempts>1
+| table ts id.orig_h username auth_attempts event_type
+![Successful Login After Multiple Attempts](Successful-Attempts-After-Multiple-Attempts.png)
